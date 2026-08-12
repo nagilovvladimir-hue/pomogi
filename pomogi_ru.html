@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Помоги.ру — решение проблемы за 1 минуту</title>
+<meta name="description" content="Бесплатный сервис, который помогает быстро найти понятное решение бытовых, цифровых и жизненных проблем.">
+<style>
+:root{
+  --bg:#f5f7fb; --card:#fff; --text:#121826; --muted:#667085;
+  --brand:#2563eb; --brand2:#7c3aed; --line:#e5e7eb; --good:#059669;
+  --shadow:0 12px 35px rgba(17,24,39,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
+a{text-decoration:none;color:inherit}
+.container{max-width:1180px;margin:auto;padding:0 22px}
+header{padding:18px 0;background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-weight:900;font-size:22px;letter-spacing:-.6px}
+.logo span{color:var(--brand)}
+.navlinks{display:flex;gap:18px;color:var(--muted);font-size:14px}
+.hero{padding:72px 0 36px}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:7px;background:#eaf1ff;color:#1d4ed8;padding:8px 12px;border-radius:999px;font-size:13px;font-weight:800}
+h1{font-size:clamp(40px,6vw,72px);line-height:.98;letter-spacing:-3px;margin:16px 0}
+.hero p{font-size:18px;line-height:1.6;color:var(--muted);max-width:660px}
+.search{margin-top:28px;display:flex;gap:10px;background:white;border:1px solid var(--line);padding:8px;border-radius:18px;box-shadow:var(--shadow)}
+.search input{flex:1;border:0;outline:0;padding:14px 15px;font-size:16px;min-width:0}
+.btn{border:0;border-radius:13px;padding:13px 18px;font-weight:800;cursor:pointer}
+.btn-primary{background:var(--brand);color:white}
+.btn-soft{background:#eef2ff;color:#3730a3}
+.note{margin-top:10px;color:var(--muted);font-size:12px}
+.hero-card{background:linear-gradient(145deg,#111827,#273a73);color:white;border-radius:28px;padding:28px;box-shadow:0 20px 55px rgba(37,99,235,.2)}
+.hero-card h3{font-size:24px;margin:0 0 8px}
+.hero-card p{color:#d1d5db;font-size:14px}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.mini{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:16px;border-radius:16px}
+.mini b{display:block;font-size:20px}.mini span{font-size:12px;color:#cbd5e1}
+section{padding:38px 0}
+.section-head{display:flex;justify-content:space-between;gap:18px;align-items:end;margin-bottom:18px}
+.section-head h2{margin:0;font-size:30px;letter-spacing:-1px}
+.section-head p{margin:0;color:var(--muted);font-size:14px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 4px 18px rgba(15,23,42,.04);transition:.18s}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.icon{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:#eef2ff;font-size:22px}
+.card h3{margin:16px 0 7px;font-size:18px}.card p{color:var(--muted);font-size:14px;line-height:1.5;margin:0}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tool{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}
+.tool h3{margin:0 0 8px}.tool p{color:var(--muted);font-size:14px;line-height:1.5}
+.tool input,.tool select{width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;margin:7px 0 12px;font-size:15px}
+.result{padding:14px;border-radius:12px;background:#f0fdf4;color:#065f46;font-weight:800;display:none}
+.ideas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.idea{background:white;border:1px solid var(--line);border-radius:18px;padding:18px}
+.idea b{display:block;margin-bottom:6px}.idea span{font-size:13px;color:var(--muted)}
+footer{margin-top:40px;background:#101828;color:#cbd5e1;padding:38px 0}
+footer .grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+footer b{color:white}
+@media(max-width:900px){
+ .hero-grid{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}.tools{grid-template-columns:1fr}.ideas{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+ .navlinks{display:none}.hero{padding-top:44px}.search{flex-direction:column}.search .btn{width:100%}
+ .cards,.ideas{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:6px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <div class="logo">Помоги<span>.ру</span></div>
+    <nav class="navlinks">
+      <a href="#problems">Проблемы</a><a href="#tools">Инструменты</a><a href="#ideas">Идеи</a>
+    </nav>
+    <a class="btn btn-soft" href="#tools">Начать</a>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+ <div class="container hero-grid">
+  <div>
+   <div class="badge">🌍 Бесплатно • для всех</div>
+   <h1>Решение проблемы — за одну минуту.</h1>
+   <p>Сервис, где человек описывает свою проблему простыми словами и получает понятный следующий шаг: что сделать, куда обратиться и какой инструмент использовать.</p>
+   <div class="search">
+    <input id="search" placeholder="Например: «телефон быстро разряжается»">
+    <button class="btn btn-primary" onclick="solve()">Найти решение</button>
+   </div>
+   <div class="note">Прототип: ответы пока работают на базе встроенной библиотеки сценариев.</div>
+   <div id="answer" style="margin-top:14px"></div>
+  </div>
+  <div class="hero-card">
+   <h3>Одна точка входа для разных людей</h3>
+   <p>Чем проще первый шаг, тем больше людей действительно решают проблему, а не закрывают страницу.</p>
+   <div class="mini-grid">
+    <div class="mini"><b>24/7</b><span>доступ к сервису</span></div>
+    <div class="mini"><b>1 мин</b><span>до первого действия</span></div>
+    <div class="mini"><b>0 ₽</b><span>за базовые инструменты</span></div>
+    <div class="mini"><b>∞</b><span>масштабирование</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="problems">
+ <div class="container">
+  <div class="section-head"><div><h2>Чем сайт уже помогает</h2><p>Категории, которыми пользуются миллионы людей каждый день.</p></div></div>
+  <div class="cards">
+   <article class="card"><div class="icon">💻</div><h3>Технологии</h3><p>ПК, телефон, Wi‑Fi, приложения, аккаунты и цифровая безопасность.</p></article>
+   <article class="card"><div class="icon">💰</div><h3>Деньги</h3><p>Бюджет, накопления, расходы, поиск способов экономить и считать.</p></article>
+   <article class="card"><div class="icon">🏠</div><h3>Быт</h3><p>Дом, документы, переезд, покупки, ремонт и повседневные задачи.</p></article>
+   <article class="card"><div class="icon">📚</div><h3>Учёба и работа</h3><p>Навыки, резюме, планирование, обучение и поиск следующего шага.</p></article>
+  </div>
+ </div>
+</section>
+
+<section id="tools">
+ <div class="container">
+  <div class="section-head"><div><h2>Полезные инструменты</h2><p>Маленькие функции, которые дают реальную пользу сразу.</p></div></div>
+  <div class="tools">
+   <div class="tool">
+    <h3>🧮 Бюджет на месяц</h3><p>Посчитайте, сколько останется после обязательных расходов.</p>
+    <input id="income" type="number" placeholder="Доход, ₽">
+    <input id="expense" type="number" placeholder="Расходы, ₽">
+    <button class="btn btn-primary" onclick="budget()">Посчитать</button>
+    <div id="budgetResult" class="result" style="margin-top:10px"></div>
+   </div>
+   <div class="tool">
+    <h3>⏱ План дня</h3><p>Разбейте день на несколько крупных блоков, чтобы не перегружать список задач.</p>
+    <select id="hours"><option value="8">8 часов свободного времени</option><option value="6">6 часов</option><option value="4">4 часа</option></select>
+    <button class="btn btn-primary" onclick="dayPlan()">Создать план</button>
+    <div id="dayResult" class="result" style="margin-top:10px"></div>
+   </div>
+   <div class="tool">
+    <h3>🔎 Поиск по подсказкам</h3><p>Попробуйте ключевые слова: «ПК», «деньги», «учёба», «дом».</p>
+    <input id="keyword" placeholder="Введите тему">
+    <button class="btn btn-primary" onclick="hint()">Получить подсказку</button>
+    <div id="hintResult" class="result" style="margin-top:10px"></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="ideas">
+ <div class="container">
+  <div class="section-head"><div><h2>Что можно добавить дальше</h2><p>Чтобы проект действительно вырос до аудитории в 1 000 000+ человек.</p></div></div>
+  <div class="ideas">
+   <div class="idea"><b>🗺 Каталог помощи по городам</b><span>Бесплатные сервисы, центры, библиотеки, пункты помощи и другие проверенные места.</span></div>
+   <div class="idea"><b>🤖 Персональный помощник</b><span>Диалог, который превращает проблему в пошаговый план действий.</span></div>
+   <div class="idea"><b>✅ Проверка информации</b><span>Показывать источники, дату обновления и уровень доверия к совету.</span></div>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="container grid">
+  <div><b>Помоги.ру</b><br>Сделано как идея общественно полезного сервиса.</div>
+  <div>Принцип: меньше сложных слов → больше реальных действий.</div>
+ </div>
+</footer>
+
+<script>
+const answers = [
+ {keys:["разряжается","батар","телефон"], text:"Проверьте состояние аккумулятора, яркость экрана, фоновые приложения и геолокацию. Начните с отключения самых энергозатратных функций и проверьте результат за несколько часов."},
+ {keys:["wifi","интернет","роутер"], text:"Сделайте перезапуск роутера и устройства, проверьте скорость по кабелю и по Wi‑Fi. Если проблема только на одном устройстве — ищите причину в нём."},
+ {keys:["деньг","бюджет","накоп"], text:"Сначала запишите обязательные расходы, затем установите лимит на необязательные покупки и отдельную сумму для накоплений."},
+ {keys:["учёб","экзам","учиться"], text:"Разделите цель на короткие сессии по 25–40 минут. На каждую сессию поставьте одну конкретную задачу и уберите уведомления."}
+];
+function solve(){
+ const q=document.getElementById("search").value.toLowerCase().trim();
+ const found=answers.find(a=>a.keys.some(k=>q.includes(k)));
+ const el=document.getElementById("answer");
+ el.innerHTML = `<div class="card" style="border-color:#bfdbfe"><b>${found?"Нашли подходящий первый шаг:":"Попробуйте уточнить проблему."}</b><p style="margin-top:8px">${found?found.text:"Напишите подробнее: что произошло, на каком устройстве и что вы уже пробовали."}</p></div>`;
+}
+function budget(){
+ const i=+document.getElementById("income").value||0,e=+document.getElementById("expense").value||0;
+ const r=document.getElementById("budgetResult"); r.style.display="block";
+ r.textContent=`Остаток: ${(i-e).toLocaleString("ru-RU")} ₽`;
+}
+function dayPlan(){
+ const h=+document.getElementById("hours").value;
+ const r=document.getElementById("dayResult"); r.style.display="block";
+ r.textContent=`Вариант: ${Math.round(h*.5)} ч — главная задача, ${Math.round(h*.25)} ч — учёба/работа, ${Math.max(1,Math.round(h*.25))} ч — бытовые дела и отдых.`;
+}
+function hint(){
+ const q=document.getElementById("keyword").value.toLowerCase();
+ const r=document.getElementById("hintResult"); r.style.display="block";
+ if(q.includes("пк")||q.includes("комп")) r.textContent="Начните с симптома: не включается, тормозит, перегревается, нет интернета или ошибка?";
+ else if(q.includes("день")) r.textContent="Начните с трёх цифр: доход, обязательные расходы и сумма накоплений.";
+ else if(q.includes("уч")) r.textContent="Сформулируйте одну конкретную тему, которую нужно освоить сегодня.";
+ else if(q.includes("дом")) r.textContent="Опишите задачу и результат, который хотите получить.";
+ else r.textContent="Попробуйте выбрать конкретную проблему, а не общую тему.";
+}
+</script>
+</body>
+</html>
